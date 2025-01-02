@@ -3,23 +3,25 @@ import BasePage from "./basePage";
 
 export class HomePage extends BasePage{
     readonly page:Page;
+    private readonly pieChart:Locator;
+    private readonly sidePanel:Locator;
 
     constructor(page: Page) {
         super(page);
         this.page = page;
+
+        this.pieChart = page.locator(pieChartLocator);
+        this.sidePanel = page.locator(sidePanelLocator);
     }
 
     async AreConfirmationImagesDisplayed(page: Page): Promise<{ pieChart: boolean, sidePanel: boolean }> {
-        const pieChartLocator = page.locator("(//div[@class='oxd-pie-chart'])[1]");
-        const sidePanelLocator = page.locator("//div[@class='oxd-sidepanel-body']");
-    
-        const pieChart = await pieChartLocator.isVisible();
-        const sidePanel = await sidePanelLocator.isVisible();
+        await this.pieChart.isVisible();
+        await this.sidePanel.isVisible();
     
         return { pieChart, sidePanel };
     }
     
 }
 
-//const pieChartLocator: string = "(//div[@class='oxd-pie-chart'])[1]";
-//const sidePanelLocator: string = "//div[@class='oxd-sidepanel-body']";
+const pieChartLocator: string = "(//div[@class='oxd-pie-chart'])[1]";
+const sidePanelLocator: string = "//div[@class='oxd-sidepanel-body']";
