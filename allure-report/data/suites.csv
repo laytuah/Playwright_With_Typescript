@@ -1,2 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","6465","POMTest","chromium","Tue Dec 31 13:43:15 GMT 2024","passed","Tue Dec 31 13:43:22 GMT 2024","","tests\POMFixturesTest.spec.ts","",""

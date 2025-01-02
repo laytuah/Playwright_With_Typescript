@@ -3,24 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "clean:reports": "rimraf allure-report allure-results && mkdirp allure-report allure-results",
-    "generate:reports": "npx allure generate ./allure-results --clean",
-    "open:reports": "npx allure open ./allure-report",
+    "clean:reports": "rimraf test-result && mkdirp test-result",
+    "generate:reports": "npx ts-node ./src/test/helper/reportGenerate.ts",
     "pretest": "npm run clean:reports",
-    "posttest": "npm run generate:reports && npm run open:reports",
-    "execute:script": "npx playwright test POMFixturesTest.spec.ts --project=chromium",
-    "test": "npm run execute:script || npm run posttest"
+    "posttest": "npm run generate:reports",
+    "execute:script": "cucumber-js test",
+    "test": "npm run execute:script || npm run posttest",
+    "execute:script:failed": "cucumber-js -p rerun @rerun.txt",
+    "test:failed": "npm run execute:script:failed || npm run generate:reports"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@cucumber/cucumber": "^11.1.1",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.2",
-    "allure-commandline": "^2.32.0",
-    "allure-playwright": "^3.0.7",
     "mkdirp": "^3.0.1",
-    "rimraf": "^6.0.1"
+    "multiple-cucumber-html-reporter": "^3.8.0",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2"
   }
 }
