@@ -18,9 +18,9 @@ export class HomePage extends BasePage {
     }
 
     async AreConfirmationImagesDisplayed(): Promise<{ pieChart: boolean, sidePanel: boolean }> {
+        await this.pieChart.waitFor({ state: "visible" });
         const isPieChartVisible = await this.pieChart.isVisible();
         const isSidePanelVisible = await this.sidePanel.isVisible();
-
         return { pieChart: isPieChartVisible, sidePanel: isSidePanelVisible };
     }
 }

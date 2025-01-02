@@ -14,9 +14,12 @@ Given('that user navigates to HRMLive page', async function () {
 });
 
 When('the user supplies the provided login details', async function () {
-    await loginPage.SignIn();
+    await loginPage.SignIn("Admin","admin123");
 });
 
 Then('the user must land on the homepage', async function () {
-    //await homePage.AreConfirmationImagesDisplayed();
+    const confirmationImagesStatus = await homePage.AreConfirmationImagesDisplayed();
+    
+    expect(confirmationImagesStatus.pieChart).toBeTruthy();
+    expect(confirmationImagesStatus.sidePanel).toBeTruthy();
 });

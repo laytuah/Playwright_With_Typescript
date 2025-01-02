@@ -8,6 +8,9 @@ export default class BasePage{
     }
 
     async navigateTo(url:string){
+        const screenWidth = await this.page.evaluate(() => window.screen.width);
+        const screenHeight = await this.page.evaluate(() => window.screen.height);
+        await this.page.setViewportSize({ width: screenWidth, height: screenHeight });
         await this.page.goto(url);
     }
 
